@@ -12,7 +12,6 @@
  * @since         0.10.0
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-
 $cakeDescription = 'CakePHP: the rapid development php framework';
 ?>
 <!DOCTYPE html>
@@ -34,18 +33,115 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->fetch('script') ?>
 </head>
 <body>
-    <nav class="top-bar expanded" data-topbar role="navigation">
-        <ul class="title-area large-3 medium-4 columns">
-            <li class="name">
-                <h1><a href=""><?= $this->fetch('title') ?></a></h1>
+    <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"><?= __('Framgia Football News') ?></a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?= __('News') ?>
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><?= $this->Html->link(
+                                    __('List News'),
+                                    ['controller' => 'News', 'action' => 'index', '_full' => true]
+                                    ); ?>
+                        </a>
+                    </li>
+                    <?php if ($this->request->session()->read('Auth.User.role') == 'admin') : ?>
+                        <li><a href="#"><?= $this->Html->link(
+                                        __('Add News'),
+                                        ['controller' => 'Teams', 'action' => 'add', '_full' => true]
+                                        ); ?>
+                            </a>
+                        </li>
+                    <?php endif; ?>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?= __('Teams') ?>
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><?= $this->Html->link(
+                                    __('List Teams'),
+                                    ['controller' => 'Teams', 'action' => 'index', '_full' => true]
+                                    ); ?>
+                        </a>
+                    </li>
+                    <?php if ($this->request->session()->read('Auth.User.role') == 'admin') : ?>
+                        <li><a href="#"><?= $this->Html->link(
+                                        __('Add Teams'),
+                                        ['controller' => 'Teams', 'action' => 'add', '_full' => true]
+                                        ); ?>
+                            </a>
+                        </li>
+                    <?php endif; ?>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?= __('Players') ?>
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><?= $this->Html->link(
+                                    __('List Players'),
+                                    ['controller' => 'Players', 'action' => 'index', '_full' => true]
+                                    ); ?>
+                        </a>
+                    </li>
+                    <?php if ($this->request->session()->read('Auth.User.role') == 'admin') : ?>
+                        <li><a href="#"><?= $this->Html->link(
+                                        __('Add Players'),
+                                        ['controller' => 'Players', 'action' => 'add', '_full' => true]
+                                        ); ?>
+                            </a>
+                        </li>
+                    <?php endif; ?>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?= __('Users') ?>
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><?= $this->Html->link(
+                                    __('List Users'),
+                                    ['controller' => 'Users', 'action' => 'index', '_full' => true]
+                                    ); ?>
+                        </a>
+                    </li>
+                    <?php if ($this->request->session()->read('Auth.User.role') == 'admin') : ?>
+                        <li><a href="#"><?= $this->Html->link(
+                                        __('Add Users'),
+                                        ['controller' => 'Users', 'action' => 'add', '_full' => true]
+                                        ); ?>
+                            </a>
+                        </li>
+                    <?php endif; ?>
+                </ul>
             </li>
         </ul>
-        <div class="top-bar-section">
-            <ul class="right">
-                <li><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></li>
-                <li><a target="_blank" href="http://api.cakephp.org/3.0/">API</a></li>
-            </ul>
-        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <?php if (!($this->request->session()->read('Auth.User'))) : ?>
+                <li></span><?= $this->Html->link(
+                            __('Register'),
+                            ['controller' => 'Users', 'action' => 'add', '_full' => true]
+                            ); ?>
+                </li>
+                <li></span><?= $this->Html->link(
+                            __('Sign In'),
+                            ['controller' => 'Users', 'action' => 'login', '_full' => true]
+                            ); ?>
+                </li>
+            <?php endif; ?>
+            <?php if ($this->request->session()->read('Auth.User')) : ?>
+                <li></span><?= $this->Html->link(
+                    __('Logout'),
+                    ['controller' => 'Users', 'action' => 'logout', '_full' => true]
+                    ); ?>
+                </li>
+            <?php endif; ?>
+        </ul>
+    </div>
     </nav>
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
