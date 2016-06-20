@@ -20,17 +20,15 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <?= $cakeDescription ?>:
         <?= $this->fetch('title') ?>
     </title>
-    <?= $this->Html->meta('icon') ?>
-
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('cake.css') ?>
-
+    <?= $this->Html->css('bootstrap.min.css') ?>
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-inverse">
@@ -103,16 +101,24 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?= __('Users') ?>
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
+                <?php if ($this->request->session()->read('Auth.User.role') == 'admin') : ?>
                     <li><a href="#"><?= $this->Html->link(
                                     __('List Users'),
                                     ['controller' => 'Users', 'action' => 'index', '_full' => true]
                                     ); ?>
                         </a>
                     </li>
-                    <?php if ($this->request->session()->read('Auth.User.role') == 'admin') : ?>
+                    <li><a href="#"><?= $this->Html->link(
+                                    __('Add Users'),
+                                    ['controller' => 'Users', 'action' => 'add', '_full' => true]
+                                    ); ?>
+                        </a>
+                    </li>
+                    <?php endif; ?>
+                    <?php if ($this->request->session()->read('Auth.User.role') == 'user') : ?>
                         <li><a href="#"><?= $this->Html->link(
-                                        __('Add Users'),
-                                        ['controller' => 'Users', 'action' => 'add', '_full' => true]
+                                        __('View Profle'),
+                                        ['controller' => 'Users', 'action' => 'view', $this->request->session()->read('Auth.User.id'), '_full' => true]
                                         ); ?>
                             </a>
                         </li>
@@ -144,7 +150,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </div>
     </nav>
     <?= $this->Flash->render() ?>
-    <div class="container clearfix">
+    <div class="container">
         <?= $this->fetch('content') ?>
     </div>
     <footer>

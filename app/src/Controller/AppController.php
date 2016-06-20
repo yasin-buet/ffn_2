@@ -40,6 +40,17 @@ class AppController extends Controller
     public function initialize()
     {
         parent::initialize();
+        $this->loadComponent('Auth', [
+            'authorize' => ['Controller'],
+            'loginRedirect' => [
+                'controller' => 'Pages',
+                'action' => 'index'
+            ],
+            'logoutRedirect' => [
+                'controller' => 'Pages',
+                'action' => 'display'
+            ]
+        ]);
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
@@ -58,5 +69,13 @@ class AppController extends Controller
         ) {
             $this->set('_serialize', true);
         }
+    }
+
+    public function isAuthorized($user)
+    {
+        if (isset($user['role']) && $user['role'] === 'admin') {
+            return true;
+        }
+        return false;
     }
 }
