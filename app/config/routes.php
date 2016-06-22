@@ -55,6 +55,14 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
 
+    Router::prefix('Admin', ['_namePrefix' => 'admin:'], function ($routes) {
+        $routes->connect(
+                '/news',
+                ['controller' => 'News', 'action' => 'index']
+        );
+        $routes->fallbacks('DashedRoute');
+    });
+
     /**
      * Connect catchall routes for all controllers.
      *
