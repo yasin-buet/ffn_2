@@ -69,20 +69,28 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?= __('Teams') ?>
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><?= $this->Html->link(
+                    <?php if ($this->request->session()->read('Auth.User.role') == 'user') : ?>
+                    <li><a href="#"><?= $this->Html->link(
                                     __('List Teams'),
                                     ['controller' => 'Teams', 'action' => 'index', '_full' => true]
                                     ); ?>
                         </a>
                     </li>
-                    <?php if ($this->request->session()->read('Auth.User.role') == 'admin') : ?>
-                        <li><?= $this->Html->link(
-                                        __('Add Teams'),
-                                        ['controller' => 'Admin/Teams', 'action' => 'add', '_full' => true]
-                                        ); ?>
-                            </a>
-                        </li>
-                    <?php endif; ?>
+                <?php endif; ?>
+                <?php if ($this->request->session()->read('Auth.User.role') == 'admin') : ?>
+                    <li><?= $this->Html->link(
+                                    __('List Teams'),
+                                    ['controller' => 'Admin/Teams', 'action' => 'index', '_full' => true]
+                                    ); ?>
+                        </a>
+                    </li>
+                    <li><?= $this->Html->link(
+                                    __('Add Team'),
+                                    ['controller' => 'Admin/Teams', 'action' => 'add', '_full' => true]
+                                    ); ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
                 </ul>
             </li>
             <li class="dropdown">
