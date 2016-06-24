@@ -42,25 +42,28 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                 <?php if ($this->request->session()->read('Auth.User.role') == 'user') : ?>
-                    <li><a href="#"><?= $this->Html->link(
-                                    __('List News'),
-                                    ['controller' => 'News', 'action' => 'index', '_full' => true]
-                                    ); ?>
-                        </a>
+                    <li>
+                        <?= $this->Html->link(__('List News'), [
+                            'controller' => 'News',
+                            'action' => 'index',
+                            '_full' => true
+                        ]); ?>
                     </li>
                 <?php endif; ?>
                 <?php if ($this->request->session()->read('Auth.User.role') == 'admin') : ?>
-                    <li><?= $this->Html->link(
-                                    __('List News'),
-                                    ['controller' => 'Admin/News', 'action' => 'index', '_full' => true]
-                                    ); ?>
-                        </a>
+                    <li>
+                        <?= $this->Html->link(__('List News'), [
+                            'controller' => 'Admin/News',
+                            'action' => 'index',
+                            '_full' => true
+                        ]); ?>
                     </li>
-                    <li><?= $this->Html->link(
-                                    __('Add News'),
-                                    ['controller' => 'Admin/News', 'action' => 'add', '_full' => true]
-                                    ); ?>
-                        </a>
+                    <li>
+                        <?= $this->Html->link(__('Add News'), [
+                            'controller' => 'Admin/News',
+                            'action' => 'add',
+                            '_full' => true
+                        ]); ?>
                     </li>
                 <?php endif; ?>
                 </ul>
@@ -69,26 +72,29 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?= __('Teams') ?>
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <?php if ($this->request->session()->read('Auth.User.role') == 'user') : ?>
-                    <li><a href="#"><?= $this->Html->link(
-                                    __('List Teams'),
-                                    ['controller' => 'Teams', 'action' => 'index', '_full' => true]
-                                    ); ?>
-                        </a>
+                <?php if ($this->request->session()->read('Auth.User.role') == 'user') : ?>
+                    <li>
+                        <?= $this->Html->link(__('List Teams'), [
+                            'controller' => 'Teams',
+                            'action' => 'index',
+                            '_full' => true
+                        ]); ?>
                     </li>
                 <?php endif; ?>
                 <?php if ($this->request->session()->read('Auth.User.role') == 'admin') : ?>
-                    <li><?= $this->Html->link(
-                                    __('List Teams'),
-                                    ['controller' => 'Admin/Teams', 'action' => 'index', '_full' => true]
-                                    ); ?>
-                        </a>
+                    <li>
+                        <?= $this->Html->link(__('List Teams'), [
+                            'controller' => 'Admin/Teams',
+                            'action' => 'index',
+                            '_full' => true
+                        ]); ?>
                     </li>
-                    <li><?= $this->Html->link(
-                                    __('Add Team'),
-                                    ['controller' => 'Admin/Teams', 'action' => 'add', '_full' => true]
-                                    ); ?>
-                        </a>
+                    <li>
+                        <?= $this->Html->link(__('Add Team'), [
+                            'controller' => 'Admin/Teams',
+                            'action' => 'add',
+                            '_full' => true
+                        ]); ?>
                     </li>
                 <?php endif; ?>
                 </ul>
@@ -97,20 +103,31 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?= __('Players') ?>
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><?= $this->Html->link(
-                                    __('List Players'),
-                                    ['controller' => 'Players', 'action' => 'index', '_full' => true]
-                                    ); ?>
-                        </a>
+                <?php if ($this->request->session()->read('Auth.User.role') == 'user') : ?>
+                    <li>
+                        <?= $this->Html->link(__('List Players'), [
+                            'controller' => 'Players',
+                            'action' => 'index',
+                            '_full' => true
+                        ]); ?>
                     </li>
-                    <?php if ($this->request->session()->read('Auth.User.role') == 'admin') : ?>
-                        <li><a href="#"><?= $this->Html->link(
-                                        __('Add Players'),
-                                        ['controller' => 'Admin/Players', 'action' => 'add', '_full' => true]
-                                        ); ?>
-                            </a>
-                        </li>
-                    <?php endif; ?>
+                <?php endif; ?>
+                <?php if ($this->request->session()->read('Auth.User.role') == 'admin') : ?>
+                    <li>
+                        <?= $this->Html->link(__('List Players'), [
+                            'controller' => 'Admin/Players',
+                            'action' => 'index',
+                            '_full' => true
+                        ]); ?>
+                    </li>
+                    <li>
+                        <?= $this->Html->link(__('Add Player'), [
+                            'controller' => 'Admin/Players',
+                            'action' => 'add',
+                            '_full' => true
+                        ]); ?>
+                    </li>
+                <?php endif; ?>
                 </ul>
             </li>
             <li class="dropdown">
@@ -118,25 +135,28 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                 <?php if ($this->request->session()->read('Auth.User.role') == 'admin') : ?>
-                    <li><?= $this->Html->link(
-                                    __('List Users'),
-                                    ['controller' => 'Users', 'action' => 'index', '_full' => true]
-                                    ); ?>
-                        </a>
+                    <li>
+                        <?= $this->Html->link(__('List Users'), [
+                            'controller' => 'Users',
+                            'action' => 'index',
+                            '_full' => true
+                        ]); ?>
                     </li>
-                    <li><?= $this->Html->link(
-                                    __('Add Users'),
-                                    ['controller' => 'Users', 'action' => 'add', '_full' => true]
-                                    ); ?>
-                        </a>
+                    <li>
+                        <?= $this->Html->link(__('Add Users'), [
+                            'controller' => 'Users',
+                            'action' => 'add',
+                            '_full' => true
+                        ]); ?>
                     </li>
                     <?php endif; ?>
                     <?php if ($this->request->session()->read('Auth.User.role') == 'user') : ?>
-                        <li><?= $this->Html->link(
-                                        __('View Profle'),
-                                        ['controller' => 'Users', 'action' => 'view', $this->request->session()->read('Auth.User.id'), '_full' => true]
-                                        ); ?>
-                            </a>
+                        <li>
+                            <?= $this->Html->link(__('View Profle'), [
+                                'controller' => 'Users',
+                                'action' => 'view', $this->request->session()->read('Auth.User.id'),
+                                '_full' => true
+                            ]); ?>
                         </li>
                     <?php endif; ?>
                 </ul>
@@ -144,22 +164,28 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <?php if (!($this->request->session()->read('Auth.User'))) : ?>
-                <li></span><?= $this->Html->link(
-                            __('Register'),
-                            ['controller' => 'Users', 'action' => 'add', '_full' => true]
-                            ); ?>
+                <li>
+                    <?= $this->Html->link(__('Register'), [
+                        'controller' => 'Users',
+                        'action' => 'add',
+                        '_full' => true
+                    ]); ?>
                 </li>
-                <li></span><?= $this->Html->link(
-                            __('Sign In'),
-                            ['controller' => 'Users', 'action' => 'login', '_full' => true]
-                            ); ?>
+                <li>
+                    <?= $this->Html->link(__('Sign In'), [
+                        'controller' => 'Users',
+                        'action' => 'login',
+                        '_full' => true
+                    ]); ?>
                 </li>
             <?php endif; ?>
             <?php if ($this->request->session()->read('Auth.User')) : ?>
-                <li></span><?= $this->Html->link(
-                    __('Logout'),
-                    ['controller' => 'Users', 'action' => 'logout', '_full' => true]
-                    ); ?>
+                <li>
+                    <?= $this->Html->link(__('Logout'), [
+                        'controller' => 'Users',
+                        'action' => 'logout',
+                        '_full' => true
+                    ]); ?>
                 </li>
             <?php endif; ?>
         </ul>

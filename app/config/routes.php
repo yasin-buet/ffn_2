@@ -64,6 +64,10 @@ Router::scope('/', function (RouteBuilder $routes) {
                 '/teams',
                 ['controller' => 'Teams', 'action' => 'index']
         );
+        $routes->connect('/players', [
+            'controller' => 'Players',
+            'action' => 'index',
+        ]);
         $routes->fallbacks('DashedRoute');
     });
 

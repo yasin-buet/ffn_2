@@ -33,7 +33,7 @@
     <div class="related">
         <h4><?= __('Related Players') ?></h4>
         <?php if (!empty($team->players)): ?>
-        <table cellpadding="0" cellspacing="0">
+        <table class="table table-hover">
             <tr>
                 <th><?= __('Id') ?></th>
                 <th><?= __('Name') ?></th>
@@ -53,8 +53,6 @@
                 <td><?= h($players->modified) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Players', 'action' => 'view', $players->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Players', 'action' => 'edit', $players->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Players', 'action' => 'delete', $players->id], ['confirm' => __('Are you sure you want to delete # {0}?', $players->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

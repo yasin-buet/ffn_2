@@ -1,17 +1,17 @@
 <div class="teams view large-9 medium-8 columns content">
     <h3><?= h($team->name) ?></h3>
-    <table class="vertical-table">
+    <table class="table table-hover">
         <tr>
             <th><?= __('Name') ?></th>
             <td><?= h($team->name) ?></td>
         </tr>
         <tr>
             <th><?= __('Country') ?></th>
-            <td><?= h($team->country) ?></td>
+            <td><?= h($team->country->name) ?></td>
         </tr>
         <tr>
             <th><?= __('Continent') ?></th>
-            <td><?= h($team->continent) ?></td>
+            <td><?= h($team->continent->name) ?></td>
         </tr>
         <tr>
             <th><?= __('Id') ?></th>
@@ -33,7 +33,7 @@
     <div class="related">
         <h4><?= __('Related Players') ?></h4>
         <?php if (!empty($team->players)): ?>
-        <table cellpadding="0" cellspacing="0">
+        <table class="table table-hover">
             <tr>
                 <th><?= __('Id') ?></th>
                 <th><?= __('Name') ?></th>
