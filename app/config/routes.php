@@ -60,6 +60,10 @@ Router::scope('/', function (RouteBuilder $routes) {
                 '/news',
                 ['controller' => 'News', 'action' => 'index']
         );
+        $routes->connect(
+                '/teams',
+                ['controller' => 'Teams', 'action' => 'index']
+        );
         $routes->fallbacks('DashedRoute');
     });
 
