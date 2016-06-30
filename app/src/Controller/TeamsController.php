@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Teams Controller
@@ -25,13 +26,16 @@ class TeamsController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Countries', 'Continents']
-        ];
+        $this->paginate = ['contain' => ['Countries', 'Continents']];
         $teams = $this->paginate($this->Teams);
+        if ($this->request->is('post')) {
+            $query = TableRegistry::get('Teams')->find();
+            $query->where(['Countries.name LIKE' => '%' . $this->request->data['keyword'] . '%'])
+                ->orWhere(['Continents.name LIKE' => '%' . $this->request->data['keyword'] . '%']);
+            $teams = $this->paginate($query);
+        }
 
         $this->set(compact('teams'));
-        $this->set('_serialize', ['teams']);
     }
 
     /**
