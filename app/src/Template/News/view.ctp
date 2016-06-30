@@ -1,6 +1,6 @@
 <div class="news view large-9 medium-8 columns content">
     <h3><?= h($news->title) ?></h3>
-    <table class="vertical-table">
+    <table class="table table-hover">
         <tr>
             <th><?= __('Title') ?></th>
             <td><?= h($news->title) ?></td>
@@ -25,12 +25,11 @@
     <div class="related">
         <h4><?= __('Related Comments') ?></h4>
         <?php if (!empty($news->comments)): ?>
-        <table cellpadding="0" cellspacing="0">
+        <table class="table table-hover">
             <tr>
                 <th><?= __('Id') ?></th>
                 <th><?= __('Body') ?></th>
-                <th><?= __('User Id') ?></th>
-                <th><?= __('News Id') ?></th>
+                <th><?= __('Commented By') ?></th>
                 <th><?= __('Created') ?></th>
                 <th><?= __('Modified') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
@@ -40,14 +39,17 @@
                 <td><?= h($comments->id) ?></td>
                 <td><?= h($comments->body) ?></td>
                 <td><?= h($comments->user_id) ?></td>
-                <td><?= h($comments->news_id) ?></td>
                 <td><?= h($comments->created) ?></td>
                 <td><?= h($comments->modified) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Comments', 'action' => 'view', $comments->id]) ?>
-                    <?php if ($this->request->session()->read('Auth.User.role') == 'admin'): ?>
+                    <?php if (($authUser['role'] == 'admin')
+                            || ($authUser['id'] == $comments->user_id)): ?>
                         <?= $this->Html->link(__('Edit'), ['controller' => 'Comments', 'action' => 'edit', $comments->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['controller' => 'Comments', 'action' => 'delete', $comments->id], ['confirm' => __('Are you sure you want to delete # {0}?', $comments->id)]) ?>
+                        <?= $this->Form->postLink(__('Delete'),
+                            ['action' => 'delete', $comments->id],
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $comments->id)])
+                        ?>
                     <?php endif; ?>
                 </td>
             </tr>
@@ -55,4 +57,14 @@
         </table>
         <?php endif; ?>
     </div>
+</div>
+<div class="btn-group col-sm-12">
+    <?= $this->Html->link('Add A Comment', [
+        'controller' => 'Comments',
+        'action' => 'add',
+        $news->id,
+    ], [
+        'class' => 'btn btn-primary col-sm-5',
+        'role' => 'button',
+    ]); ?>
 </div>

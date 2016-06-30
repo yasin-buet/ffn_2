@@ -68,6 +68,10 @@ Router::scope('/', function (RouteBuilder $routes) {
             'controller' => 'Players',
             'action' => 'index',
         ]);
+        $routes->connect('/comments', [
+            'controller' => 'Comments',
+            'action' => 'index',
+        ]);
         $routes->fallbacks('DashedRoute');
     });
 
