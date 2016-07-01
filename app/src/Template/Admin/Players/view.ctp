@@ -11,7 +11,8 @@
                 <?= $player->has('team') ? $this->Html->link($player->team->name, [
                     'controller' => 'Teams',
                     'action' => 'view', $player->team->id
-                ]) : '' ?>
+                    ])
+                ?>
             </td>
         </tr>
         <tr>

@@ -27,6 +27,7 @@ use Cake\Event\Event;
  */
 class AppController extends Controller
 {
+    var $helpers = array('Form', 'Html');
 
     /**
      * Initialization hook method.
@@ -69,6 +70,10 @@ class AppController extends Controller
         ) {
             $this->set('_serialize', true);
         }
+    }
+
+    public function beforeFilter(Event $event) {
+        $this->set('authUser', $this->Auth->user());
     }
 
     public function isAuthorized($user)

@@ -47,7 +47,10 @@
                     <?= $this->Html->link(__('View'), ['controller' => 'Comments', 'action' => 'view', $comments->id]) ?>
                     <?php if ($this->request->session()->read('Auth.User.role') == 'admin'): ?>
                         <?= $this->Html->link(__('Edit'), ['controller' => 'Comments', 'action' => 'edit', $comments->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['controller' => 'Comments', 'action' => 'delete', $comments->id], ['confirm' => __('Are you sure you want to delete # {0}?', $comments->id)]) ?>
+                        <?= $this->Form->postLink(__('Delete'),
+                            ['action' => 'delete', $comments->id],
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $comments->id)])
+                        ?>
                     <?php endif; ?>
                 </td>
             </tr>
@@ -56,3 +59,14 @@
         <?php endif; ?>
     </div>
 </div>
+<div class="btn-group col-sm-12">
+    <?= $this->Html->link('Add A Comment', [
+        'controller' => 'Comments',
+        'action' => 'add',
+        $news->id,
+    ], [
+        'class' => 'btn btn-primary col-sm-5',
+        'role' => 'button',
+    ]); ?>
+</div>
+
